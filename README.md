@@ -21,6 +21,27 @@ A simple ComfyUI custom node that lets you apply multiple LoRAs (up to 10) to a 
 
 3. Restart ComfyUI.
 
+## Dependencies
+
+- Uses ComfyUI's built-in `torch` and loader utilities (no extra pip deps).
+
+## Troubleshooting
+
+- **"LoRA not found"**
+   - The selected file doesn't exist under ComfyUI's LoRA folder (usually `ComfyUI/models/loras`).
+   - Make sure the filename matches and the file is in the expected folder.
+- **This node must be run inside ComfyUI**
+   - Importing the node module outside ComfyUI will fail because it expects ComfyUI's runtime modules.
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
+
+## Changelog / Releases
+
+- Changes are tracked in [CHANGELOG.md](CHANGELOG.md).
+- For a new release: update `CHANGELOG.md`, create a git tag (e.g. `v1.0.1`), then publish a GitHub Release for that tag.
+
 ## Usage
 
 - Add the node **LoRA Stacker (multi)** (node id: `LoRA Stacker`) from category `loaders`.
@@ -63,3 +84,19 @@ Note: The screenshot path in this README expects an image at `images/lora-stacke
 - LoRA 名が `None`、または重みが `0` のものはスキップされます。
 
 注：この README の先頭画像は `images/lora-stacker.png` を参照しています。
+
+## 依存関係
+
+- ComfyUI 環境に含まれる `torch` やローダー機能を利用します（追加の pip 依存はありません）。
+
+## トラブルシュート
+
+- **"LoRA not found" が出る**
+   - 選択した LoRA ファイルが ComfyUI の LoRA フォルダ（通常 `ComfyUI/models/loras`）に存在しません。
+   - ファイル名の一致と配置フォルダを確認してください。
+- **"This node must be run inside ComfyUI" が出る**
+   - ComfyUI の実行環境外で import すると、ComfyUI のモジュールが無いためエラーになります。
+
+## ライセンス
+
+MIT License（[LICENSE](LICENSE)）。

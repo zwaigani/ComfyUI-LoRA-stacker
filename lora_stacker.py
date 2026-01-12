@@ -61,7 +61,7 @@ class LoraStacker:
     FUNCTION = "apply"
     CATEGORY = "loaders"
 
-    def apply(self, model, clip, **kwargs):
+    def apply(self, model, clip, lora_1_name="None", lora_1_weight=1.0, **kwargs):
         if _import_error is not None:
             raise RuntimeError(
                 "ComfyUI modules are not available. This node must be run inside ComfyUI. "
@@ -71,8 +71,10 @@ class LoraStacker:
         # Collect inputs in order.
         lora_items: list[tuple[str, float]] = []
 
-        name1 = kwargs.get("lora_1_name")
-        weight1 = float(kwargs.get("lora_1_weight", 1.0))
+        # Some ComfyUI versions call node functions with required widgets as positional args.
+        # Others may pass everything via kwargs. Support both.
+        name1 = kwargs.get("lora_1_name", lora_1_name)
+        weight1 = float(kwargs.get("lora_1_weight", lora_1_weight))
         lora_items.append((name1, weight1))
 
         for i in range(2, MAX_LORAS + 1):
